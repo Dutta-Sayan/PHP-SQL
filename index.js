@@ -1,0 +1,11 @@
+$(document).ready(function(){
+  $(".code-button").click(function(){
+    $(".employee-code-table").css("display","block");
+  });
+  $(".salary-button").click(function(){
+    $(".employee-salary-table").css("display","block");
+  });
+  $(".details-button").click(function(){
+    $(".employee-details-table").css("display","block");
+  });
+});

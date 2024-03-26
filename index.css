@@ -1,0 +1,19 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.employee-code-table, .employee-details-table, .employee-salary-table{
+  display: none;
+}
+table{
+  text-align: center;
+  border-collapse: collapse;
+}
+th,td{
+  padding: 10px;
+  border: 1px solid black;
+}
+h2{
+  margin-block: 10px;
+}
