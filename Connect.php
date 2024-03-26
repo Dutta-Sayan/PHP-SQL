@@ -30,4 +30,13 @@ class Connection {
     $result2 = $stmt2->fetchAll();
     return $result2;
   }
+
+  public function showExtendedFixture() {
+    // $sql3 = "SELECT f.Venue, f.Dates, f.Team1, t.Captain as CT1, f.Team2, f.Toss_won, f.Match_won from fixture as f inner join Teams as t where f.Team1=t.Team_name and f.Team2=t.Team_name;";
+    $sql3 = "SELECT f.Venue, f.Dates, f.Team1, t1.Captain as TC1, t1.Captain as TC2, f.Team2, f.Toss_won, f.Match_won from fixture as f inner join Teams as t1 on f.Team1=t1.Team_name;";
+    $stmt3 = $this->conn->prepare($sql3);
+    $stmt3->execute();
+    $result3 = $stmt3->fetchAll();
+    return $result3;
+  }
 }

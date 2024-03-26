@@ -6,6 +6,7 @@ ini_set('display_errors', 1);
   $connect = new Connection();
   $result1 = $connect->showTeams();
   $result2 = $connect->showFixture();
+  $result3 = $connect->showExtendedFixture();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,6 +53,34 @@ ini_set('display_errors', 1);
           <td><?php echo $row['Dates']; ?></td>
           <td><?php echo $row['Team1']; ?></td>
           <td><?php echo $row['Team2']; ?></td>
+          <td><?php echo $row['Toss_won']; ?></td>
+          <td><?php echo $row['Match_won']; ?></td>
+        </tr>
+      <?php }?>
+    </table>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Venue</th>
+          <th>Date</th>
+          <th>Team1</th>
+          <th>Team 1 Captain</th>
+          <th>Team2</th>
+          <th>Team 2 Captain</th>
+          <th>Toss Won</th>
+          <th>Match won</th>
+          <!-- <th>Team 2 Captain</th> -->
+        </tr>
+      </thead>
+      <?php foreach ($result3 as $row) {?>
+        <tr>
+          <td><?php echo $row['Venue']; ?></td>
+          <td><?php echo $row['Dates']; ?></td>
+          <td><?php echo $row['Team1']; ?></td>
+          <td><?php echo $row['TC1']; ?></td>
+          <td><?php echo $row['Team2']; ?></td>
+          <td><?php echo $row['TC2']; ?></td>
           <td><?php echo $row['Toss_won']; ?></td>
           <td><?php echo $row['Match_won']; ?></td>
         </tr>
