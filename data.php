@@ -1,10 +1,14 @@
 <?php
 require_once 'Connect.php';
 require_once 'Validate.php';
-$servername = "localhost";
-$username = "sayan";
-$password = "password";
-$dbname = "Employee";
+require_once realpath(__DIR__ . "/vendor/autoload.php");
+use Dotenv\Dotenv;$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$servername = $_ENV['SERVERNAME'];
+$username = $_ENV['USERNAME'];
+$password = $_ENV['PASSWORD'];
+$dbname = $_ENV['DATABASE'];
 
 $conn = new Connect($servername, $username, $password, $dbname);
 $valid = new Validate();
@@ -21,15 +25,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   $fnameErr = $valid->isValidFname($empFname);
   $lnameErr = $valid->isValidLname($empLname);
-  $codeErr = $valid->isValidCode($empCode, $empFname);
-  $codeNameErr = $valid->isValidCodeName($empCodeName ,$empFname);
+  $codeErr = $valid->isValidCode($empCode);
+  $codeNameErr = $valid->isValidCodeName($empCodeName);
   $idErr = $valid->isValidId($empId);
   $domainErr = $valid->isValidDomain($empDomain);
   $salaryErr = $valid->isValidSalary($empSalary);
   $percentileErr = $valid->isValidPercentile($empPercentile);
 
+  if($fnameErr=="" && $lnameErr=="" && $codeErr=="" && $codeNameErr=="" && 
+  $idErr=="" && $domainErr=="" && $salaryErr=="" && $percentileErr=="") {
+    $conn->insertCodeTable($empCode, $empCodeName, $empDomain);
+    $conn->insertSalaryTable($empId, $empSalary, $empCode);
+    $conn->insertDetailsTable($empId, $empFname, $empLname, $empPercentile);
+    $query1 = $conn->query1();
+  }
 
-  $conn->insertCodeTable($empCode, $empCodeName, $empDomain);
-  $conn->insertSalaryTable($empId, $empSalary, $empCode);
-  $conn->insertDetailsTable($empId, $empFname, $empLname, $empPercentile);
 }
