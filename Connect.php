@@ -1,13 +1,21 @@
 <?php
 
+require_once realpath(__DIR__ . "/vendor/autoload.php");
+use Dotenv\Dotenv;$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+/**
+ * Class for connecting with the database and executing the queries.
+ */
 class Connection {
   public $conn;
   public function __construct() {
-    $servername = "localhost";
-    $username = "sayan";
-    $password = "password";
+    $servername = $_ENV['SERVERNAME'];
+    $username = $_ENV['USERNAME'];
+    $password = $_ENV['PASSWORD'];
+    $database = $_ENV['DATABASE'];
     try{
-      $this->conn = new PDO("mysql:host=$servername;dbname=IPL", $username, $password);
+      $this->conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
       $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch(PDOException $e) {
@@ -32,8 +40,7 @@ class Connection {
   }
 
   public function showExtendedFixture() {
-    // $sql3 = "SELECT f.Venue, f.Dates, f.Team1, t.Captain as CT1, f.Team2, f.Toss_won, f.Match_won from fixture as f inner join Teams as t where f.Team1=t.Team_name and f.Team2=t.Team_name;";
-    $sql3 = "SELECT f.Venue, f.Dates, f.Team1, t1.Captain as TC1, t1.Captain as TC2, f.Team2, f.Toss_won, f.Match_won from fixture as f inner join Teams as t1 on f.Team1=t1.Team_name;";
+    $sql3 = "SELECT venue, dates, team1, t.captain as TC1, team2, t1.captain as TC2, toss_won, match_won from fixture as f inner join Teams as t on f.Team1=t.Team_name inner join Teams as t1 on f.Team2=t1.Team_name;";
     $stmt3 = $this->conn->prepare($sql3);
     $stmt3->execute();
     $result3 = $stmt3->fetchAll();

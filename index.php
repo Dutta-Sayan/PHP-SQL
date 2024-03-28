@@ -70,19 +70,18 @@ ini_set('display_errors', 1);
           <th>Team 2 Captain</th>
           <th>Toss Won</th>
           <th>Match won</th>
-          <!-- <th>Team 2 Captain</th> -->
         </tr>
       </thead>
       <?php foreach ($result3 as $row) {?>
         <tr>
-          <td><?php echo $row['Venue']; ?></td>
-          <td><?php echo $row['Dates']; ?></td>
-          <td><?php echo $row['Team1']; ?></td>
+          <td><?php echo $row['venue']; ?></td>
+          <td><?php echo $row['dates']; ?></td>
+          <td><?php echo $row['team1']; ?></td>
           <td><?php echo $row['TC1']; ?></td>
-          <td><?php echo $row['Team2']; ?></td>
+          <td><?php echo $row['team2']; ?></td>
           <td><?php echo $row['TC2']; ?></td>
-          <td><?php echo $row['Toss_won']; ?></td>
-          <td><?php echo $row['Match_won']; ?></td>
+          <td><?php echo $row['toss_won']; ?></td>
+          <td><?php echo $row['match_won']; ?></td>
         </tr>
       <?php }?>
     </table>
