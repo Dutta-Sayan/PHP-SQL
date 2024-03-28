@@ -1,13 +1,17 @@
 <?php
   require_once 'Connect.php';
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
   
+  // Stores the connection class object.
   $connect = new Connection();
+  // Storing the query result for showing Team names with captains.
   $result1 = $connect->showTeams();
+  // Storing the query result for showing the fixtures of matches.
   $result2 = $connect->showFixture();
+  // Storing the query result for showing the fixtures of matches along with the
+  // names of the captains of the two playing teams.
   $result3 = $connect->showExtendedFixture();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +25,7 @@ ini_set('display_errors', 1);
 <body>
   <div class="container">
     <h2>IPL FIXTURES</h2>
+    <!-- Displaying the Teams table containing team name and captains. -->
     <table>
       <thead>
         <tr>
@@ -36,6 +41,7 @@ ini_set('display_errors', 1);
       <?php }?>
     </table>
 
+    <!-- Showing the Fixture table. -->
     <table>
       <thead>
         <tr>
@@ -59,6 +65,7 @@ ini_set('display_errors', 1);
       <?php }?>
     </table>
 
+    <!-- Displaying the combined table with fixtures including the captain names -->
     <table>
       <thead>
         <tr>
