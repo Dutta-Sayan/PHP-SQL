@@ -12,7 +12,8 @@
         $lname = trim($_POST['lname']);
         $fullName = $_POST['fullName'];
 
-        // Variables 'marks' and 'mobNo' hold the subject-marks and mobile number respectively as string. 
+        // Variables 'marks' and 'mobNo' hold the subject-marks and mobile 
+        // number respectively as string. 
         $marks = trim($_POST['marks']);
         $mobNo = trim($_POST['mobileNo']);
         $email = strtolower(trim($_POST['email']));
@@ -21,7 +22,8 @@
             // New object created.
             $user = new User($fname, $lname, $mobNo, $email);
             
-            // Variable 'returnMsg' stores the value determining if invalid entry is done in input fields.
+            // Variable 'returnMsg' stores the value determining if invalid 
+            // entry is done in input fields.
             $returnMsg = $user->isValid();
             $validNo = $user->isValidNumber();
             $validEmail = $user->isValidEmail();
@@ -41,14 +43,16 @@
                         $imgErr = "Not a valid image!";
                     }
                     else {
-                        // Variable 'marksArr' stores a 2-D array containing subject name and marks
+                        // Variable 'marksArr' stores a 2-D array containing 
+                        // subject name and marks
                         $marksArr = $user->processMarks($marks);
                         if ($marksArr == 0)
                             $marksErr = "*Invalid format";
                         else {
                             $greetings = $returnMsg;
                             $name = $fname." ".$lname;
-                            // The result to be displayed in table format is stored in 'table' variable.
+                            // The result to be displayed in table format is 
+                            // stored in 'table' variable.
                             $table = $user->createTable($marksArr);
                             $user->createPdf($marksArr, $imgPath);
                         }
@@ -68,7 +72,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignment 6</title>
     <style>
-        <?php include 'style.css'; ?>
+        <?php include './Utils/CSS/style.css'; ?>
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script><?php include 'app.js'; ?></script>
