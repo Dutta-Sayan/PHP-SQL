@@ -1,10 +1,24 @@
 <?php
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1);
-require_once 'data.php';
-// if(isset($_POST['query1'])) {
-//   $query1 = $conn->query1();
-// }
+require_once 'Data.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// If a button for a query is clicked, then that query is executed by 
+// function call.
+if(isset($_POST['query1'])) 
+  $query1 = $conn->query1();
+if(isset($_POST['query2'])) 
+  $query2 = $conn->query2();
+if(isset($_POST['query3']))
+  $query3 = $conn->query3();
+if(isset($_POST['query4']))
+  $query4 = $conn->query4();
+if(isset($_POST['query5']))
+  $query5 = $conn->query5();
+if(isset($_POST['query6']))
+  $query6 = $conn->query6();
+if(isset($_POST['query7']))
+  $query7 = $conn->query7();
 ?>
 
 <!DOCTYPE html>
@@ -137,14 +151,17 @@ require_once 'data.php';
     <h2>QUERIES</h2>
     <div class="ques">
       <p>WAQ to list all employee first name with salary greater than 50k. </p>
-      <input type="submit" name="query1" class="query-1-button"></input>
+      <form action="" method="post">
+        <input type="submit" name="query1" class="query-1-button"></input>
+        <button id="query-1-show-table" onclick="return false">Show Table</button>
+      </form>
       <div class="table query-1">
         <table>
           <tr>
             <th>Employee First Name</th>
             <th>Employee Salary</th>
           </tr>
-          <?php foreach ($conn->query1() as $row) {?>
+          <?php foreach ($query1 as $row) {?>
           <tr>
             <td><?php echo $row['employee_first_name'];?></td>
             <td><?php echo $row['employee_salary'];?></td>
@@ -156,14 +173,17 @@ require_once 'data.php';
 
     <div class="ques">
       <p>WAQ to list all employee last name with graduation percentile greater than 70%.</p>
-      <input type="submit" name="query2" class="query-2-button"></input>
+      <form action="" method="post">
+        <input type="submit" name="query2" class="query-2-button"></input>
+        <button id="query-2-show-table" onclick="return false">Show Table</button>
+      </form>
       <div class="table query-2">
         <table>
           <tr>
             <th>Employee Last Name</th>
             <th>Graduation Percentile</th>
           </tr>
-          <?php foreach ($conn->query2() as $row) {?>
+          <?php foreach ($query2 as $row) {?>
           <tr>
             <td><?php echo $row['employee_last_name'];?></td>
             <td><?php echo $row['Graduation_percentile'];?></td>
@@ -175,14 +195,17 @@ require_once 'data.php';
 
     <div class="ques">
       <p>WAQ to list all employee code name with graduation percentile less than 70%. </p>
-      <input type="submit" name="query3" class="query-3-button"></input>
+      <form action="" method="post">
+        <input type="submit" name="query3" class="query-3-button"></input>
+        <button id="query-3-show-table" onclick="return false">Show Table</button>
+      </form>
       <div class="table query-3">
         <table>
           <tr>
             <th>Employee Code Name</th>
             <th>Graduation Percentile</th>
           </tr>
-          <?php foreach ($conn->query3() as $row) {?>
+          <?php foreach ($query3 as $row) {?>
           <tr>
             <td><?php echo $row['employee_code_name'];?></td>
             <td><?php echo $row['Graduation_percentile'];?></td>
@@ -194,14 +217,17 @@ require_once 'data.php';
 
     <div class="ques">
       <p>WAQ to list all employee's full name that are not of domain Java. </p>
-      <input type="submit" name="query4" class="query-4-button"></input>
+      <form action="" method="post">
+        <input type="submit" name="query4" class="query-4-button"></input>
+        <button id="query-4-show-table" onclick="return false">Show Table</button>
+      </form>
       <div class="table query-4">
         <table>
           <tr>
             <th>Employee Full Name</th>
             <th>Employee Domain</th>
           </tr>
-          <?php foreach ($conn->query4() as $row) {?>
+          <?php foreach ($query4 as $row) {?>
           <tr>
             <td><?php echo $row['employee_full_name'];?></td>
             <td><?php echo $row['employee_domain'];?></td>
@@ -213,14 +239,17 @@ require_once 'data.php';
 
     <div class="ques">
       <p>WAQ to list all employee_domain with sum of it's salary. </p>
-      <input type="submit" name="query5" class="query-5-button"></input>
+      <form action="" method="post">
+        <input type="submit" name="query5" class="query-5-button"></input>
+        <button id="query-5-show-table" onclick="return false">Show Table</button>
+      </form>
       <div class="table query-5">
         <table>
           <tr>
             <th>Employee Domain</th>
             <th>Salary</th>
           </tr>
-          <?php foreach ($conn->query5() as $row) {?>
+          <?php foreach ($query5 as $row) {?>
           <tr>
             <td><?php echo $row['employee_domain'];?></td>
             <td><?php echo $row['Salary']."k";?></td>
@@ -232,14 +261,17 @@ require_once 'data.php';
 
     <div class="ques">
       <p>Write the above query again but dont include salaries which is less than 30k. </p>
-      <input type="submit" name="query6" class="query-6-button"></input>
+      <form action="" method="post">
+        <input type="submit" name="query6" class="query-6-button"></input>
+        <button id="query-6-show-table" onclick="return false">Show Table</button>
+      </form>
       <div class="table query-6">
         <table>
           <tr>
             <th>Employee Domain</th>
             <th>Salary</th>
           </tr>
-          <?php foreach ($conn->query6() as $row) {?>
+          <?php foreach ($query6 as $row) {?>
           <tr>
             <td><?php echo $row['employee_domain'];?></td>
             <td><?php echo $row['Salary'];?></td>
@@ -251,13 +283,16 @@ require_once 'data.php';
 
     <div class="ques">
       <p>WAQ to list all employee id which has not been assigned employee code. </p>
-      <input type="submit" name="query7" class="query-7-button"></input>
+      <form action="" method="post">
+        <input type="submit" name="query7" class="query-7-button"></input>
+        <button id="query-7-show-table" onclick="return false">Show Table</button>
+      </form>
       <div class="table query-7">
         <table>
           <tr>
             <th>Employee Id</th>
           </tr>
-          <?php foreach ($conn->query7() as $row) {?>
+          <?php foreach ($query7 as $row) {?>
           <tr>
             <td><?php echo $row['employee_id'];?></td>
           </tr>

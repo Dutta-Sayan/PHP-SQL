@@ -14,8 +14,7 @@ body{
   font-size: 14px;
   color: red;
 }
-.employee-code-table, .employee-details-table, .employee-salary-table,.query-1,
-.query-2,.query-3,.query-4,.query-5,.query-6,.query-7{
+.employee-code-table, .employee-details-table, .employee-salary-table,.table{
   display: none;
 }
 table{

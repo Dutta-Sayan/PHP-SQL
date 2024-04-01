@@ -53,25 +53,25 @@ $(document).ready(function() {
   $(".details-button").click(function(){
     $(".employee-details-table").css("display","block");
   });
-  $(".query-1-button").click(function(){
-    $(".query-1").css("display","block");
+  $("#query-1-show-table").click(function(){
+    $(".query-1").toggle();
   });
-  $(".query-2-button").click(function(){
-    $(".query-2").css("display","block");
+  $("#query-2-show-table").click(function(){
+    $(".query-2").toggle();
   });
-  $(".query-3-button").click(function(){
-    $(".query-3").css("display","block");
+  $("#query-3-show-table").click(function(){
+    $(".query-3").toggle();
   });
-  $(".query-4-button").click(function(){
-    $(".query-4").css("display","block");
+  $("#query-4-show-table").click(function(){
+    $(".query-4").toggle();
   });
-  $(".query-5-button").click(function(){
-    $(".query-5").css("display","block");
+  $("#query-5-show-table").click(function(){
+    $(".query-5").toggle();
   });
-  $(".query-6-button").click(function(){
-    $(".query-6").css("display","block");
+  $("#query-6-show-table").click(function(){
+    $(".query-6").toggle();
   });
-  $(".query-7-button").click(function(){
-    $(".query-7").css("display","block");
+  $("#query-7-show-table").click(function(){
+    $(".query-7").toggle();
   });
 });
