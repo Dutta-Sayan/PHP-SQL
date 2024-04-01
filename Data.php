@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 // Including the Connect.php and Validate.php files.
 require_once 'Connect.php';
 require_once 'Validate.php';

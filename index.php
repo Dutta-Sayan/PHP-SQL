@@ -1,7 +1,6 @@
 <?php
+// Including the Data.php file.
 require_once 'Data.php';
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 // If a button for a query is clicked, then that query is executed by 
 // function call.
