@@ -1,13 +1,20 @@
 <?php
+// Including the Connection.php file.
 require_once 'Connection.php';
+
+// Store the token to be used for pasword reset validation.
 $token = $_GET['token'];
+// Store the hash value of the token.
 $tokenHash = hash("sha256",$token);
+// Store the object of Connection class.
 $conn = new Connection();
+// Checking if the token is valid or not.
 $result = $conn->checkToken($tokenHash);
 
 if(count($result)==0) {
   die("Token not found");
 }
+// Checking if the token expiry time has exceeded limit or not.
 if (strtotime($result[0]['tokenExpiry'])<=time()) {
   die("token expired");
 }
