@@ -1,0 +1,20 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(to right, rgb(153, 153, 224),yellow);
+}
+.container{
+  width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+table{
+  border-collapse: collapse;
+  margin-inline: auto;
+  margin-block: 20px;
+}
+td,tr,th{
+  padding: 10px;
+  border: 1px solid black;
+}
