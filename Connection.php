@@ -71,7 +71,8 @@ class Connection {
    *  Contains the email.
    */
   public function insertUser(string $username, string $password, string $email) {
-    $sql = "INSERT into Register(username,userPassword,email) values ('$username', '$password', '$email');";
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $sql = "INSERT into Register(username,userPassword,email) values ('$username', '$hashedPassword', '$email');";
     $stmt = $this->conn->prepare($sql);
     $stmt->execute();
   }
@@ -88,10 +89,10 @@ class Connection {
    * @return bool|null
    *  If the password matches with the retyped password, it returns true.
    */
-  public function checkPassword($password, $passCheck) {
-    if($password === $passCheck)
-      return TRUE;
-  }
+  // public function checkPassword($password, $passCheck) {
+  //   if($password === $passCheck)
+  //     return TRUE;
+  // }
 
   /**
    * Reset the password details if valid credentials are given.
@@ -152,8 +153,9 @@ class Connection {
    *  Contains the hashed token.
    */
   public function updatePassword($password, $tokenHash) {
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     // After resetting the email, setting the token and expiry value to null. 
-    $sql = "UPDATE Register set userPassword='$password', resetToken=NULL, tokenExpiry=NULL where resetToken='$tokenHash';";
+    $sql = "UPDATE Register set userPassword='$hashedPassword', resetToken=NULL, tokenExpiry=NULL where resetToken='$tokenHash';";
     $stmt = $this->conn->prepare($sql);
     $stmt->execute();
   }

@@ -48,7 +48,7 @@ class Validation {
 
       if(count($result) > 0) {
         // For valid user, checks if password is valid or not.
-        if($conn->checkPassword($password, $result[0]['userPassword']))
+        if(password_verify($password, $result[0]['userPassword']))
           return TRUE;
         else
         // For incorrect password, stores the error message in the array.
