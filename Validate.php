@@ -10,7 +10,7 @@ class Validate {
    * 
    * @var string
    */
-  public $err;
+  // public $err;
 
   /**
    * Checks for valid first name.
@@ -22,15 +22,16 @@ class Validate {
    *  Returns the error value.
    */
   public function isValidFname(string $fname) {
+    $err="";
     // Pattern for first name.
     $pattern = "/^[a-zA-Z ]{1,20}$/";
     // Maximum 20 characters allowed for first name.
     if(strlen($fname)>20)
-      $this->err = "*Maximum 20 characters";
+      $err = "*Maximum 20 characters";
     // Checking for valid first name expression.
     else if(!preg_match($pattern, $fname))
-      $this->isValidFnameerr = "*Incorrect first name";
-    return $this->err; 
+      $err = "*Incorrect first name";
+    return $err; 
   }
 
   /**
@@ -43,15 +44,16 @@ class Validate {
    *  Returns the error value.
    */
   public function isValidLname(string $lname) {
+    $err="";
     // Pattern for last name.
     $pattern = "/^[a-zA-Z ]{1,20}$/";
     // Maximum 20 characters allowed for last name.
     if(strlen($lname)>20)
-      $this->err = "*Maximum 20 characters";
+      $err = "*Maximum 20 characters";
     // Pattern match checking for last name.
     else if(!preg_match($pattern, $lname))
-      $this->err = "*Incorrect last name";
-    return $this->err; 
+      $err = "*Incorrect last name";
+    return $err; 
   }
 
   /**
@@ -64,14 +66,15 @@ class Validate {
    *  Returns the error value.
    */
   public function isValidCode(string $code) {
+    $err="";
     // Pattern for employee code.
     $pattern = "/^(su_)[a-zA-Z]+$/";
     // Employee code allowed for a maximum length of 20 characters.
     if(strlen($code)>20)
-      $this->err = "*Maximum 20 characters";
+      $err = "*Maximum 20 characters";
     else if(!preg_match($pattern, $code))
-      $this->err = "*Incorrect code";
-    return $this->err; 
+      $err = "*Incorrect code";
+    return $err; 
   }
 
   /**
@@ -84,13 +87,14 @@ class Validate {
    *  Returns the error value.
    */
   public function isValidCodeName(string $codeName) {
+    $err="";
     // Pattern for employee code name.
     $pattern = "/^[a-z]{1}(u_)[a-zA-Z]+$/";
     if(strlen($codeName)>20)
-      $this->err = "*Maximum 20 characters";
+      $err = "*Maximum 20 characters";
     else if(!preg_match($pattern, $codeName))
-      $this->err = "*Incorrect code name";
-    return $this->err; 
+      $err = "*Incorrect code name";
+    return $err; 
   }
 
   /**
@@ -103,14 +107,15 @@ class Validate {
    *  Returns the error value.
    */
   public function isValidId(string $id) {
+    $err="";
     // Pattern for Employee Id.
     $pattern = "/^(RU)[1-9]{3}$/";
     // Maximum 5 characters allowed for domain name value.
     if(strlen($id)>5)
-      $this->err = "*Maximum 5 characters";
+      $err = "*Maximum 5 characters";
     else if(!preg_match($pattern, $id))
-      $this->err = "*Id not valid";
-    return $this->err; 
+      $err = "*Id not valid";
+    return $err; 
   }
 
   /**
@@ -123,10 +128,11 @@ class Validate {
    *  Returns the error value.
    */
   public function isValidDomain(string $domain) {
+    $err="";
     // Maximum 20 characters for domain name.
     if(strlen($domain)>20)
-      $this->err = "*Maximum 20 characters";
-    return $this->err; 
+      $err = "*Maximum 20 characters";
+    return $err; 
   }
 
   /**
@@ -139,13 +145,14 @@ class Validate {
    *  Returns the error value.
    */
   public function isValidSalary(string $salary) {
+    $err="";
     // Pattern for salary.
-    $pattern = "/^[1-9]{1,3}(k)$/";
+    $pattern = "/^[0-9]{1,3}k$/";
     if(strlen($salary)>3)
-      $this->err = "*Maximum 3 characters";
+      $err = "*Maximum 3 characters";
     else if(!preg_match($pattern, $salary))
-      $this->err = "*Salary not correct";
-    return $this->err; 
+      $err = "*Salary not correct";
+    return $err; 
   }
 
   /**
@@ -158,13 +165,14 @@ class Validate {
    *  Returns the error value.
    */
   public function isValidPercentile(string $percentile) {
+    $err="";
     // Pattern for percentile value.
-    $pattern = "/^[1-9]{2}(%)$/";
+    $pattern = "/^[0-9]{2}%$/";
     // Maximum 3 characters for percentile value including '%' character.
     if(strlen($percentile)>3)
-      $this->err = "*Maximum 3 characters";
+      $err = "*Maximum 3 characters";
     else if(!preg_match($pattern, $percentile))
-      $this->err = "*Incorrect percentile";
-    return $this->err; 
+      $err = "*Incorrect percentile";
+    return $err; 
   }
 }

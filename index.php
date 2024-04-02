@@ -98,12 +98,15 @@ if(isset($_POST['query7']))
           <th>Employee Code</th>
           <th>Employee Code Name</th>
           <th>Employee Domain</th>
+          <th colspan="2" align="center">Operations</th>
         </tr>
         <?php foreach ($conn->showCodeTable() as $row) {?>
         <tr>
           <td><?php echo $row['employee_code'];?></td>
           <td><?php echo $row['employee_code_name'];?></td>
           <td><?php echo $row['employee_domain'];?></td>
+          <td><a href="update.php?val=<?php echo $row['employee_code']?>">Edit/Update</a></td>
+          <td><a href="delete.php?val=<?php echo $row['employee_code']?>">Delete</a></td>
         </tr>
         <?php }?>
       </table>

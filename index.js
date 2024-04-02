@@ -32,11 +32,11 @@ $(document).ready(function() {
       $(".form-error").text("*Error in domain");
       errStatus = false;
     }
-    else if (salary.length >3 || (!salary.match(/(^[1-9]{1,3}(k)$)/))) {
+    else if (salary.length >3 || (!salary.match(/(^[0-9]{1,3}k$)/))) {
       $(".form-error").text("*Error in salary");
       errStatus = false;
     }
-    else if (percent.length >3 || (!percent.match(/(^[1-9]{2}(%)$)/))) {
+    else if (percent.length >3 || (!percent.match(/(^[0-9]{1,2}%$)/))) {
       $(".form-error").text("*Error in percentile");
       errStatus = false;
     }

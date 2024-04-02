@@ -257,5 +257,44 @@ class Connect {
     $res->execute();
     return $res->fetchAll();
   }
+
+  public function getCodeDetails($empCode) {
+    $sql = "SELECT * FROM employee_code_table where employee_code = '$empCode';";
+    return $this->queryExecution($sql);
+  }
+  public function getSalaryDetails($empCode) {
+    $sql = "SELECT * FROM employee_salary_table where employee_code = '$empCode';";
+    return $this->queryExecution($sql);
+  }
+  public function getEmployeeDetails($empId) {
+    $sql = "SELECT * FROM employee_details_table where employee_id = '$empId';";
+    return $this->queryExecution($sql);
+  }
+
+  public function updateCodeTable($empCodeOriginal, $empCode, $empCodeName, $empDomain) {
+    $sql = "UPDATE employee_code_table set employee_code='$empCode', employee_code_name='$empCodeName', employee_domain='$empDomain' where employee_code='$empCodeOriginal';";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+  }
+
+  public function updateSalaryTable($empId, $empSalary, $empCode, $empCodeOriginal) {
+
+    $sql = "UPDATE employee_salary_table set employee_id='$empId', employee_salary='$empSalary', employee_code='$empCode' where employee_code='$empCodeOriginal';";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+  }
+
+  public function updateDetailsTable($empIdOriginal, $empId, $empFname, $empLname, $empPercentile) {
+    $sql = "UPDATE employee_details_table set employee_id='$empId', employee_first_name='$empFname', employee_last_name='$empLname', Graduation_percentile = '$empPercentile' where employee_id='$empIdOriginal';";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+  }
+
+  public function deleteRecord($empCode) {
+    $sql = "DELETE from employee_code_table where employee_code='$empCode';";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+    return "Deleted Successfully";
+  }
 }
 
