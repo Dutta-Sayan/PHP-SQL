@@ -76,24 +76,7 @@ class Connection {
     $stmt = $this->conn->prepare($sql);
     $stmt->execute();
   }
-
-  /**
-   * Checking if the password matches with the retyped password.
-   * 
-   * @param string $password
-   *  Contains the password.
-   * 
-   * @param string $passCheck
-   *  Contains the retyped password.
-   * 
-   * @return bool|null
-   *  If the password matches with the retyped password, it returns true.
-   */
-  // public function checkPassword($password, $passCheck) {
-  //   if($password === $passCheck)
-  //     return TRUE;
-  // }
-
+  
   /**
    * Reset the password details if valid credentials are given.
    * 
