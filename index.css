@@ -1,0 +1,63 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body{
+  background-color: aquamarine;
+}
+.container{
+  width: 1200px;
+  margin: auto;
+}
+.error,.form-error{
+  font-size: 14px;
+  color: red;
+}
+.employee-code-table, .employee-details-table, .employee-salary-table,.table{
+  display: none;
+}
+table{
+  text-align: center;
+  border-collapse: collapse;
+  border-radius: 5px;
+}
+.submit{
+  padding: 8px;
+}
+th,td{
+  padding: 10px;
+  border: 1px solid black;
+}
+h2{
+  margin-block: 10px;
+}
+input{
+  margin-block: 10px;
+  padding: 5px;
+}
+.employee-details{
+  text-align: center;
+  background-color: #52a8d3;
+  box-shadow: 5px 5px 2px blue;
+  h2{
+    padding-block: 10px;
+  }
+  
+}
+button{
+  padding: 8px;
+  margin-top: 20px;
+}
+.table{
+  margin-block: 10px;
+  padding: 5px;
+  background: linear-gradient(rgb(0, 174, 255), rgb(31, 98, 169));
+  box-shadow: 5px 5px 5px blue;
+  border-radius: 10px;
+}
+.ques{
+  input{
+    padding: 8px;
+  }
+}
