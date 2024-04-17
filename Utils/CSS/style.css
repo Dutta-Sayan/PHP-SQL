@@ -5,26 +5,26 @@
     box-sizing: border-box;
     font-family: 'Arial';
 }
-.container{
+.container {
     width: 1200px;
     margin: auto;
-    h2{
+    h2 {
         padding-top: 10px;
         margin-bottom: 25px;
         text-align: center;
     }
 }
-.user-details{
+.user-details {
     background-color: #13053c;
     color:  white;
 }
-.input-form{
+.input-form {
     padding: 30px 20px;
     text-align: center;
     background-image: linear-gradient(#3a3a9f, #202020);
     box-shadow: 5px 5px 36px 2px white;
     border-radius: 20px;
-    input{
+    input {
         border: 1px solid black;
         border-radius: 10px;
         padding: 5px;
@@ -33,63 +33,63 @@
         width: 500px;
         vertical-align: middle;
     }
-    textarea{
+    textarea {
         width: 455px;
         margin: 10px;
         border-radius: 5px;
         vertical-align: middle;
         resize: none;
     }
-    .image-input{
+    .image-input {
         border: none;
         width: 440px;
 
     }
-    .submit-button{
+    .submit-button {
         width: 100px;
     }
-    .fullname{
+    .fullname {
         color: black;
     }
 }
-.validity{
+.validity {
     color: rgb(191, 255, 0);
 }
-.greetings{
+.greetings {
     color: yellow;
     font-size: 20px;
     text-align: center;
     margin-bottom: 20px;
     padding-block: 40px;
 }
-.marks-table{
+.marks-table {
     padding-block: 10px;
     text-align: center;
-    table{
+    table {
         color: white;
         width: 600px;
         margin: auto; 
         text-align: center;
     }
-    table,td{
+    table,td {
         border: 1px solid white;
         border-collapse: collapse;
     }
-    td{
+    td {
         padding: 10px;
     }
 }
-.error{
+.error {
     color: red;
     font-size: 14px;
 }
-.logout{
+.logout {
   margin-block: 5px;
   display: inline-block;
-  :hover{
+  :hover {
       cursor: pointer;
   }
-  input{
+  input {
       padding: 10px;
       margin-block: 5px;
   }

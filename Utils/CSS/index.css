@@ -3,10 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
-body{
+body {
   padding: 20px;
 }
-.container{
+.container {
   width: 600px;
   margin: auto;
   padding: 40px;
@@ -15,33 +15,33 @@ body{
     text-align: center;
   }
 }
-.form-input{
+.form-input {
   margin: 10px;
 }
-.form-btn{
+.form-btn {
   margin-left: 10px;
   margin-bottom: 10px;
   padding: 5px;
 }
-.err{
+.err {
   color: red;
   font-size: 14px;
   font-style: italic;
 }
-.login{
+.login {
   a{
     margin-block: 5px;
   }
 }
-.forgot-password{
+.forgot-password {
   text-align: right;
 }
-.password-reset-input{
+.password-reset-input {
   border-radius: 5px;
   width: 500px;
   margin-bottom: 10px;
 }
-.msg{
+.msg {
   color: green;
   font-size: 14px;
   font-style: italic;

@@ -1,4 +1,5 @@
 <?php
+
 require_once realpath(__DIR__ . "/vendor/autoload.php");
 use Dotenv\Dotenv;$dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
@@ -40,10 +41,10 @@ class Connection {
 
   /**
    * Checks if the user exists in database.
-   * 
+   *
    * @param string $user
    *  Contains the username to be checked for.
-   * 
+   *
    * @return array
    *  Returns the array of the row containing the username.
    */
@@ -71,6 +72,8 @@ class Connection {
    *  Contains the email.
    */
   public function insertUser(string $username, string $password, string $email) {
+
+    // Storing the password as a hash value in the database.
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     $sql = "INSERT into Register(username,userPassword,email) values ('$username', '$hashedPassword', '$email');";
     $stmt = $this->conn->prepare($sql);
@@ -91,14 +94,14 @@ class Connection {
    * 
    * @return bool
    */
-  public function resetPasswordDetails($tokenHash, $expiry, $email): bool {
+  public function resetPasswordDetails(string $tokenHash, string $expiry, string $email): bool {
     // Extracting the record for the given email to check if the email is of
     // a valid user.
     $sql1 = "SELECT * from Register where email='$email';";
     $stmt = $this->conn->prepare($sql1);
     $stmt->execute();
     $result = $stmt->fetchAll();
-    if(count($result)>0){
+    if (count($result) > 0) {
       // On valid user email, setting the token and expiry time for password
       // resetting.
       $sql2 = "UPDATE Register set resetToken='$tokenHash', tokenExpiry='$expiry' where email='$email';";
@@ -119,7 +122,8 @@ class Connection {
    * @return array
    *  Returns the respective row of the user with the matched token.
    */
-  public function checkToken($tokenHash):array {
+  public function checkToken(string $tokenHash):array {
+    // Searching if a valid token exists for resetting password.
     $sql = "SELECT * from Register where resetToken='$tokenHash';";
     $stmt = $this->conn->prepare($sql);
     $stmt->execute();
@@ -135,7 +139,7 @@ class Connection {
    * @param string $tokenHash
    *  Contains the hashed token.
    */
-  public function updatePassword($password, $tokenHash) {
+  public function updatePassword(string $password, string $tokenHash) {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     // After resetting the email, setting the token and expiry value to null. 
     $sql = "UPDATE Register set userPassword='$hashedPassword', resetToken=NULL, tokenExpiry=NULL where resetToken='$tokenHash';";

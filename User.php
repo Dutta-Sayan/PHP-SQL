@@ -2,7 +2,10 @@
 
 use Fpdf\Fpdf;
 
-require ('vendor/autoload.php');
+require_once realpath(__DIR__ . "/vendor/autoload.php");
+use Dotenv\Dotenv;$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 /**
  * This class validates the input given by user.
  */
@@ -136,7 +139,7 @@ class User {
     }
     else {
       // Stores the api key.
-      $api_key = "038c427c27d1417397129856c0f90f04";
+      $api_key = $_ENV['API_KEY'];
       // Initialising curl session.
       $ch = curl_init();
       // Settings the options to include when connecting with the api.

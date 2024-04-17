@@ -39,7 +39,7 @@ class Mail {
     try {
       $newEmail->isSMTP();
       $newEmail->Host = 'smtp.gmail.com';
-      $newEmail->SMTPAuth = true;
+      $newEmail->SMTPAuth = TRUE;
       // Email address from which mail is to be send.
       $newEmail->Username = 'sayandutta0587@gmail.com';
       $newEmail->Password = 'yyojcrmqcluoqpyz';
@@ -49,14 +49,15 @@ class Mail {
       // Contains the user's email address to which mail is to be sent.
       $newEmail->addAddress($this->email);
       $newEmail->addReplyTo('sayandutta0587@gmail.com', 'Sayan');
-      $newEmail->isHTML(true);
+      $newEmail->isHTML(TRUE);
       $newEmail->Subject = 'Reset Password';
       $newEmail->Body = <<<END
           Click  <a href="sql3.com/sendLink.php?token=$token">here</a>for resetting password.
           END;
       $newEmail->send();
 
-    } catch (Exception $e) {
+    }
+    catch (Exception $e) {
       echo 'The email cannot be sent' . $newEmail->ErrorInfo;
     }
   }
