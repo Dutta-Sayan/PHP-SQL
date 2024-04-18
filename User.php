@@ -218,7 +218,7 @@ class User {
    * @return string 
    *  String containing the html table.
    */
-  public function createTable( string $marksArr): mixed {
+  public function createTable(string $marksArr): mixed {
 
     if (count($marksArr) > 0) {
       $table = '<h3>Your Result</h3><br><table class="Result">';
