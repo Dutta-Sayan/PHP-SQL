@@ -11,10 +11,10 @@ class Validation {
   /**
    * Regex pattern to match the username against.
    * Username can contain small or capital alphabets, space and underscore.
-   * 
+   *
    * @var string
    */
-  private $uNamePattern = "/^[a-zA-Z_ ]{1,25}$/";
+  const UNAMEPATTERN= "/^[a-zA-Z_ ]{1,25}$/";
 
   /**
    * Checks if errors are present in the login input fields.
@@ -37,7 +37,7 @@ class Validation {
     if($this->isempty($username, $password))
       array_push($error, "*Empty fields present");
     // Checking if the username matches the required pattern.
-    if(!preg_match($this->uNamePattern, $username))
+    if(!preg_match(Validation::UNAMEPATTERN, $username))
       array_push($error, "*Incorrect Username or Password");
     // If no error is found, connection is made to database.
 
@@ -86,28 +86,28 @@ class Validation {
     $error = array();
 
     // Checking if any input field is empty or not.
-    if($this->isempty($username, $password, $retypePassword, $email))
+    if ($this->isempty($username, $password, $retypePassword, $email))
       array_push($error, "*Empty fields present");
     // Checking if username is matching the pattern or not. 
-    if(!preg_match($this->uNamePattern, $username))
+    if (!preg_match(Validation::UNAMEPATTERN, $username))
       array_push($error, "*Not a valid username");
     // Checking the length of password within the range.
-    if(strlen($password)<8 || strlen($password)>30)
-      array_push($error,"*Password not in range");
+    if (strlen($password)<8 || strlen($password)>30)
+      array_push($error, "*Password not in range");
 
     // Checking if the password matches with the retyped password.
     if($password !== $retypePassword)
-      array_push($error,"*Password does not match");
+      array_push ($error, "*Password does not match");
     // Checking email validity.
-    if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL))
       array_push($error, "*Invalid email");
 
-    if(count($error)==0) {
+    if (count($error)==0) {
       // Establishing connection to database ifno errors found.
       $conn = new Connection();
       //Checking is user already exists.
       $result = $conn->checkUser($username);
-      if(count($result)>0) {
+      if (count($result)>0) {
         array_push($error, "*User already exists");
       }
       else {
@@ -130,7 +130,7 @@ class Validation {
    */
   public function isempty(string ...$value): bool {
     foreach ($value as $val) {
-      if(!empty($val))
+      if (!empty($val))
         return FALSE;
     }
     return TRUE;

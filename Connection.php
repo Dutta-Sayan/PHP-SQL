@@ -1,7 +1,10 @@
 <?php
 
 require_once realpath(__DIR__ . "/vendor/autoload.php");
-use Dotenv\Dotenv;$dotenv = Dotenv::createImmutable(__DIR__);
+
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 /**
@@ -10,8 +13,8 @@ $dotenv->load();
 class Connection {
 
   /**
-   * Stores the connection PDO. 
-   * 
+   * Stores the connection PDO.
+   *
    * @var object
    */
   public $conn;
@@ -107,9 +110,11 @@ class Connection {
       $sql2 = "UPDATE Register set resetToken='$tokenHash', tokenExpiry='$expiry' where email='$email';";
       $stmt = $this->conn->prepare($sql2);
       $stmt->execute();
+      // Returning 1 on successful password change.
       return 1;
     }
     else
+      // Returning 0 if password change is unsuccessful.
       return 0;
   }
 
@@ -141,7 +146,7 @@ class Connection {
    */
   public function updatePassword(string $password, string $tokenHash) {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    // After resetting the email, setting the token and expiry value to null. 
+    // After resetting the password, setting the token and expiry value to null.
     $sql = "UPDATE Register set userPassword='$hashedPassword', resetToken=NULL, tokenExpiry=NULL where resetToken='$tokenHash';";
     $stmt = $this->conn->prepare($sql);
     $stmt->execute();

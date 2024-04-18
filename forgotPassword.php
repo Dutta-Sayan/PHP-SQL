@@ -21,8 +21,11 @@ if(isset($_POST['submit'])) {
   else {
     // Passing the valid mail to Mail class to sent the password reset link.
     $mail = new Mail($email);
-    $mail->resetPasswordEmail($token);
-    $msg = "Password reset link sent to $email";
+    $message = $mail->resetPasswordEmail($token);
+    if ($message == 1)
+      $msg = "Password reset link sent to $email";
+    else
+      $msg = $message;
   }
 }
 ?>

@@ -12,41 +12,41 @@ $dotenv->load();
 class User {
 
   /**
-   * @param string $fname
+   * @var string $fname
    *  Stores the first name.
    */
   public string $fname;
 
   /**
-   * @param string $lname
+   * @var string $lname
    *  Stores the last name.
    */
   public string $lname;
 
   /**
-   * @param string $mobNo
+   * @var string $mobNo
    *  Stores the mobile number.
    */
   public string $mobNo;
 
   /**
-   * @param string $email
+   * @var string $email
    *  Stores the email address.
    */
   public string $email;
 
   /**
    * Constructor to initialise the class variables.
-   * 
+   *
    * @param string $fname
    *  Contains the first name.
-   * 
+   *
    * @param string $lname
    *  Contains the last name.
-   * 
+   *
    * @param string $mobNo
    *  Contains the mobile number.
-   * 
+   *
    * @param string $email
    *  Contains the email address.
    */
@@ -59,12 +59,13 @@ class User {
 
   /**
    * Checks if the first and last name matches the proper naming convention.
-   * 
-   * @return string 
-   *  Returns name field value on wrong input and on correct input returns 
+   *
+   * @return string
+   *  Returns name field value on wrong input and on correct input returns
    *  the full name.
    */
   public function isValid(): string {
+
     // Pattern for checking first name and last name.
     $pattern = "/^[a-zA-Z ]{1,25}$/";
 
@@ -88,6 +89,7 @@ class User {
    *  Returns the target address of stored image on successful upload.
    */
   public function isValidImage(): string {
+
     // Storing the target directory name.
     $targetDir = "./uploads/";
     // Contatenating  the target directory to the image file name to get the 
@@ -117,6 +119,7 @@ class User {
    *  Returns 1 in case of invalid number and the number as string if valid.
    */
   public function isValidNumber(): mixed {
+
     // Checking for proper mobile number pattern.
     if (!preg_match("/^(\+91)[0-9]{10}$/", $this->mobNo)) {
       return 1;
@@ -133,6 +136,7 @@ class User {
    *  Returns 0 on invalid syntax and 1 on correct email.
    */
   public function isValidEmail(): bool {
+
     // If email syntax is incorrect, returns 0.
     if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
       return 0;
@@ -145,15 +149,15 @@ class User {
       // Settings the options to include when connecting with the api.
       curl_setopt_array($ch, [
         CURLOPT_URL => "https://emailvalidation.abstractapi.com/v1/?api_key=$api_key&email=$this->email",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_FOLLOWLOCATION => true
+        CURLOPT_RETURNTRANSFER => TRUE,
+        CURLOPT_FOLLOWLOCATION => TRUE
       ]);
       // Establishing connection with the api using the above option values.
       $result = curl_exec($ch);
       curl_close($ch);
 
       // Decoding the json data obtained from the api execution.
-      $data = json_decode($result, true);
+      $data = json_decode($result, TRUE);
       // Checking if the email is deliverable or not.
       if ($data['deliverability'] === "DELIVERABLE")
         return 1;
@@ -171,6 +175,7 @@ class User {
    *  and 0 on invalid entry.
    */
   public function processMarks($marks): mixed {
+
     // Pattern for checking the valid entry of marks.
     $pattern = "/^[ ]*[a-zA-Z]+[ ]{0,1}[a-zA-Z]*[|][0-9]{1,3}[ ]*$/";
     $marks = preg_replace("/[ ]{2,}/", "\n", $marks);
@@ -214,6 +219,7 @@ class User {
    *  String containing the html table.
    */
   public function createTable( string$marksArr): mixed {
+
     if (count($marksArr) > 0) {
       $table = '<h3>Your Result</h3><br><table class="Result">';
       $table .= '<tr><th>' . "Subject" . '</th>' . '<th>' . "Marks" . '</th></tr>';
@@ -246,6 +252,7 @@ class User {
    *  Contains the path of the image
    */
   public function createPdf(array $marksArr, string $imgPath) {
+
     // Stores the Fpdf object.
     $pdf = new Fpdf();
     $pdf->AddPage();

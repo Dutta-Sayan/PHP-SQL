@@ -1,68 +1,68 @@
 <?php
-    session_start();
-    $user = $_SESSION['userName'];
-    if($user == FALSE) {
-      header('location:login.php');
-    }
-    include 'User.php';
-    if (isset($_POST["submit"])) {
+  session_start();
+  $user = $_SESSION['userName'];
+  if($user == FALSE) {
+    header('location:login.php');
+  }
+  include 'User.php';
+  if (isset($_POST["submit"])) {
 
-        // Variables 'fname' and 'lname' hold the first and last name.
-        $fname = trim($_POST['fname']);
-        $lname = trim($_POST['lname']);
-        $fullName = $_POST['fullName'];
+      // Variables 'fname' and 'lname' hold the first and last name.
+      $fname = trim($_POST['fname']);
+      $lname = trim($_POST['lname']);
+      $fullName = $_POST['fullName'];
 
-        // Variables 'marks' and 'mobNo' hold the subject-marks and mobile 
-        // number respectively as string. 
-        $marks = trim($_POST['marks']);
-        $mobNo = trim($_POST['mobileNo']);
-        $email = strtolower(trim($_POST['email']));
+      // Variables 'marks' and 'mobNo' hold the subject-marks and mobile 
+      // number respectively as string. 
+      $marks = trim($_POST['marks']);
+      $mobNo = trim($_POST['mobileNo']);
+      $email = strtolower(trim($_POST['email']));
 
-        if(empty($fullName)){
-            // New object created.
-            $user = new User($fname, $lname, $mobNo, $email);
-            
-            // Variable 'returnMsg' stores the value determining if invalid 
-            // entry is done in input fields.
-            $returnMsg = $user->isValid();
-            $validNo = $user->isValidNumber();
-            $validEmail = $user->isValidEmail();
-            if ($returnMsg == $fname)
-                $ferrMsg = "*Error";
-            else if($returnMsg == $lname)
-                $lerrMsg = "*Error";
-            else if ($validNo == 1)
-                $numErr = "*Not a valid Number";
-            else if ($validEmail == 0)
-                $emailErr = "*Email is not valid";
-            else {
-                $Validity= "Valid";
-                if (isset($_FILES["image"])) {
-                    $imgPath = $user->isValidImage();
-                    if ($imgPath == "") {
-                        $imgErr = "Not a valid image!";
-                    }
-                    else {
-                        // Variable 'marksArr' stores a 2-D array containing 
-                        // subject name and marks
-                        $marksArr = $user->processMarks($marks);
-                        if ($marksArr == 0)
-                            $marksErr = "*Invalid format";
-                        else {
-                            $greetings = $returnMsg;
-                            $name = $fname." ".$lname;
-                            // The result to be displayed in table format is 
-                            // stored in 'table' variable.
-                            $table = $user->createTable($marksArr);
-                            $user->createPdf($marksArr, $imgPath);
-                        }
-                    }
-                }  
-            }
-        }
-        else
-            $err = "Can't edit full name";
-    }
+      if(empty($fullName)){
+          // New object created.
+          $user = new User($fname, $lname, $mobNo, $email);
+          
+          // Variable 'returnMsg' stores the value determining if invalid 
+          // entry is done in input fields.
+          $returnMsg = $user->isValid();
+          $validNo = $user->isValidNumber();
+          $validEmail = $user->isValidEmail();
+          if ($returnMsg == $fname)
+              $ferrMsg = "*Error";
+          else if($returnMsg == $lname)
+              $lerrMsg = "*Error";
+          else if ($validNo == 1)
+              $numErr = "*Not a valid Number";
+          else if ($validEmail == 0)
+              $emailErr = "*Email is not valid";
+          else {
+              $Validity= "Valid";
+              if (isset($_FILES["image"])) {
+                  $imgPath = $user->isValidImage();
+                  if ($imgPath == "") {
+                      $imgErr = "Not a valid image!";
+                  }
+                  else {
+                      // Variable 'marksArr' stores a 2-D array containing 
+                      // subject name and marks
+                      $marksArr = $user->processMarks($marks);
+                      if ($marksArr == 0)
+                          $marksErr = "*Invalid format";
+                      else {
+                          $greetings = $returnMsg;
+                          $name = $fname." ".$lname;
+                          // The result to be displayed in table format is 
+                          // stored in 'table' variable.
+                          $table = $user->createTable($marksArr);
+                          $user->createPdf($marksArr, $imgPath);
+                      }
+                  }
+              }  
+          }
+      }
+      else
+          $err = "Can't edit full name";
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
